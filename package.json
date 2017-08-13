@@ -22,7 +22,6 @@
   "scripts": {
     "test": "mocha test/*.spec.js --require config/mocha.js --compilers js:babel-core/register",
     "test-watch": "mocha test/*.spec.js --require config/mocha.js --compilers js:babel-core/register --watch",
-    "lint-js": "eslint plugin",
     "prepare": "babel -d build/ plugin/"
   },
   "dependencies": {
@@ -36,7 +35,6 @@
     "babel-preset-es2015-without-strict": "0.0.4",
     "babel-preset-stage-1": "^6.13.0",
     "chai": "^3.5.0",
-    "eslint": "^3.4.0",
     "mocha": "^3.0.2",
     "sinon": "^1.17.5"
   }
