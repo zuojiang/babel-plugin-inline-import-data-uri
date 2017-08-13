@@ -12,8 +12,6 @@ import logo from './logo.svg';
 console.log(logo);
 ```
 
-**Note:** both cases are equivalent and will result in similar code after Babel transpile them. Check [How it works](#how-it-works) section for details.
-
 ## Install
 ```
 npm install babel-plugin-inline-import-data-uri --save-dev
@@ -56,7 +54,7 @@ If you want to enable different file extensions, you can define them in your `.b
 
 ## How it works
 
-It inserts the __content__ of the _imported file_ directly into the _importing file_, assigning it to a variable with the same identifier of the _import statement_, thus replacing the _import statement_ and the _file path_ by its resulting raw content (no parsing occurs).
+It inserts the __content__ of the _imported file_ directly into the _importing file_ encoded as [Data URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), assigning it to a variable with the same identifier of the _import statement_, thus replacing the _import statement_ and the _file path_ by its resulting content.
 
 ## Caveats
 
