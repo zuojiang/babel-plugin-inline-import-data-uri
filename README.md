@@ -1,55 +1,22 @@
-# Babel Inline Import [![Build Status](https://travis-ci.org/Quadric/babel-plugin-inline-import.svg?branch=master)](https://travis-ci.org/Quadric/babel-plugin-inline-import)
-Babel plugin to add the opportunity to use `import` with raw/literal content<br>
-It is good e.g. for importing `*.graphql` files into your code.
+# Babel Inline Import Data URI
+
+Babel plugin to add the opportunity to use `import` file content as DataURI.
 
 ## Examples
 
-Before (without Babel-Inline-Import):
-```javascript
+```js
 // server.js
+import logo from './logo.svg';
 
-// bad syntax highlighting, no syntax checking
-const typeDefinitions = `
-type Query {
-  testString: String
-}
-schema {
-  query: Query
-}
-`;
-
-graphQLServer({
-  schema: [typeDefinitions],
-  ...
-});
-```
-
-Now (with Babel-Inline-Import):
-```javascript
-// /some/schema.graphql
-type Query {
-  testString: String
-}
-schema {
-  query: Query
-}
-```
-
-```javascript
-// server.js
-import schema from '/some/schema.graphql';
-
-graphQLServer({
-  schema: [schema],
-  ...
-});
+// Will print "data:image/svg+xml;base64,PD94bWwgdmVyc2lv...4KPC9zdmc+';"
+console.log(logo);
 ```
 
 **Note:** both cases are equivalent and will result in similar code after Babel transpile them. Check [How it works](#how-it-works) section for details.
 
 ## Install
 ```
-npm install babel-plugin-inline-import --save-dev
+npm install babel-plugin-inline-import-data-uri --save-dev
 ```
 
 ## Use
@@ -57,20 +24,19 @@ Add a `.babelrc` file and write:
 ```javascript
 {
   "plugins": [
-    "babel-plugin-inline-import"
+    "inline-import-data-uri"
   ]
 }
 ```
 or pass the plugin with the plugins-flag on CLI
 ```
-babel-node myfile.js --plugins babel-plugin-inline-import
+babel-node myfile.js --plugins inline-import-data-uri
 ```
 
 By default, Babel-Inline-Import is compatible with the following file extensions:
 
-* .raw
-* .text
-* .graphql
+* .svg
+* .png
 
 
 ## Customize
@@ -80,8 +46,8 @@ If you want to enable different file extensions, you can define them in your `.b
   "plugins": [
     ["babel-plugin-inline-import", {
       "extensions": [
-        ".json",
-        ".sql"
+        ".html",
+        ".jpg"
       ]
     }]
   ]
@@ -102,5 +68,5 @@ Babel does not track dependency between _imported_ and _importing_ files after t
 Also make sure that your task runner is watching for changes in the _imported file_ as well. You can see it working [here](https://github.com/Quadric/perfect-graphql-starter/blob/master/nodemon.json).
 
 
-## Motivate
-If you like this project just give it a star :) I like stars.
+## Credits
+This project is based on [babel-plugin-inline-import](https://github.com/Quadric/babel-plugin-inline-import).
