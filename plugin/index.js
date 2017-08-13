@@ -1,12 +1,14 @@
+import mime from 'mime-types';
 import BabelInlineImportHelper from './helper';
 
 export default function({ types: t }) {
-  class BabelInlineImport {
+  class BabelInlineImportDataURI {
     constructor() {
       return {
         visitor: {
           ImportDeclaration: {
             exit(path, state) {
+
               const givenPath = path.node.source.value;
               let reference = state && state.file && state.file.opts.filename;
               const extensions = state && state.opts && state.opts.extensions;
@@ -23,7 +25,9 @@ export default function({ types: t }) {
 
                 const id = path.node.specifiers[0].local.name;
                 const content = BabelInlineImportHelper.getContents(givenPath, reference);
-                const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(content));
+                const mimeType = mime.lookup(givenPath) || 'application/octet-stream';
+                const dataURI = `data:${mimeType};base64,` + new Buffer(content).toString('base64');
+                const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(dataURI));
 
                 path.replaceWith({
                   type: 'VariableDeclaration',
@@ -44,5 +48,5 @@ export default function({ types: t }) {
     }
   }
 
-  return new BabelInlineImport();
+  return new BabelInlineImportDataURI();
 }

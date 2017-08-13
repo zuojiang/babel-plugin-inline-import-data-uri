@@ -4,9 +4,8 @@ import requireResolve from 'require-resolve';
 
 export default class BabelInlineImportHelper {
   static extensions = [
-    '.raw',
-    '.text',
-    '.graphql',
+    '.svg',
+    '.png',
   ];
 
   static root = global.rootPath || process.cwd();

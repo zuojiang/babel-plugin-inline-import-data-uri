@@ -5,9 +5,8 @@ describe('Babel Inline Import - Helper', () => {
   describe('Class', () => {
     it('returns the default extensions', () => {
       expect(BabelInlineImportHelper.extensions).to.deep.equal([
-        '.raw',
-        '.text',
-        '.graphql',
+        '.svg',
+        '.png',
       ]);
     });
 
@@ -19,7 +18,7 @@ describe('Babel Inline Import - Helper', () => {
 
   describe('shouldBeInlined', () => {
       it('accepts a default extension', () => {
-        const shouldIt = BabelInlineImportHelper.shouldBeInlined('example.raw');
+        const shouldIt = BabelInlineImportHelper.shouldBeInlined('example.svg');
         expect(shouldIt).to.be.true;
       });
 
