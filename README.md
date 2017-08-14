@@ -33,8 +33,8 @@ babel-node myfile.js --plugins inline-import-data-uri
 
 By default, Babel-Inline-Import is compatible with the following file extensions:
 
-* .svg
-* .png
+* `.svg`
+* `.png`
 
 
 ## Customize
