@@ -42,7 +42,7 @@ If you want to enable different file extensions, you can define them in your `.b
 ```javascript
 {
   "plugins": [
-    ["babel-plugin-inline-import", {
+    ["inline-import-data-uri", {
       "extensions": [
         ".html",
         ".jpg"
