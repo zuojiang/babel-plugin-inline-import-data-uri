@@ -4,12 +4,23 @@ Babel plugin to add the opportunity to use `import` file content as DataURI.
 
 ## Examples
 
-```js
-// server.js
+```jsx
 import logo from './logo.svg';
+import background from './background.png';
 
 // Will print "data:image/svg+xml;base64,PD94bWwgdmVyc2lv...4KPC9zdmc+';"
 console.log(logo);
+
+class MyComponent extends React.Component
+{
+  render() {
+    return (
+      <div style={{background: `url(${background})`}}>
+        <img src={logo}/>
+      </div>;
+    );
+  }
+}
 ```
 
 ## Install
